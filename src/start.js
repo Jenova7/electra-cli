@@ -15,7 +15,10 @@ let timerId
 
 async function refreshInfo() {
   const info = await electraJs.wallet.getInfo()
-  const logLines = fs.readFileSync(path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log'), 'utf8').split(os.EOL)
+  const logLines = fs
+    .readFileSync(path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log'), 'utf8')
+    .split(os.EOL)
+    .filter(line => !line.startsWith('ThreadRPCServer'))
 
   log.clear()
   log(`Electra CLI v${VERSION}`)
