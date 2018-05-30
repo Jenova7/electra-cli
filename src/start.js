@@ -7,6 +7,7 @@ const moment = require('moment')
 const os = require('os')
 const path = require('path')
 
+const LOG_LENGTH = 20
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({ isHard: true })
@@ -29,7 +30,7 @@ async function refreshInfo() {
 
   log(`LOG                             ${moment().format('hh:mm:ss')}`)
   log('----------------------------------------')
-  log.info(logLines.slice(logLines.length - 11, logLines.length - 1).join(os.EOL))
+  log.info(logLines.slice(logLines.length - (LOG_LENGTH + 1), logLines.length - 1).join(os.EOL))
 
   timerId = setTimeout(refreshInfo, 250)
 }
