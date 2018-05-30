@@ -1,6 +1,6 @@
 {
   "name": "electra-cli",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "CLI tools for Electra daemon and blockchain.",
   "main": "./bin/electra.js",
   "bin": {
