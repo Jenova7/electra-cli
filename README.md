@@ -22,4 +22,4 @@ Then:
 
     electra <command>
 
-Just type `electra` to show the manual and list available commands.
+Just type `electra` to show the manual and list the available commands.
