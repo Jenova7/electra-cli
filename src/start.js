@@ -10,6 +10,7 @@ const path = require('path')
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({ isHard: true })
+let timerId
 
 async function refreshInfo() {
   const info = await electraJs.wallet.getInfo()
@@ -30,16 +31,23 @@ async function refreshInfo() {
   log('----------------------------------------')
   log.info(logLines.slice(logLines.length - 11, logLines.length - 1).join(os.EOL))
 
-  setTimeout(refreshInfo, 250)
+  timerId = setTimeout(refreshInfo, 250)
 }
 
 module.exports = async function () {
   process.on('SIGINT', async () => {
+    if (timerId !== undefined) clearTimeout(timerId)
+    log.clear()
+    log.info('Stopping Electra daemon...')
     await electraJs.wallet.stopDaemon()
+    log.info('Electra daemon stopped.')
     process.exit();
   })
 
+  log.clear()
+  log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
+  log.info('Electra daemon started.')
 
   await refreshInfo()
 }
