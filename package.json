@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Electra-project/electra-cli/issues"
   },
-  "homepage": "https://github.com/Electra-project/electra-cli#readme"
+  "homepage": "https://github.com/Electra-project/electra-cli#readme",
+  "dependencies": {
+    "commander": "^2.15.1"
+  }
 }
