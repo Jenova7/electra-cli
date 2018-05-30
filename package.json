@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Electra-project/electra-cli#readme",
   "dependencies": {
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "electra-js": "^0.14.2"
   }
 }
