@@ -15,7 +15,7 @@
   "dependencies": {
     "@inspired-beings/log": "^1.2.0",
     "commander": "^2.15.1",
-    "electra-js": "^0.14.2"
+    "electra-js": "^0.14.3"
   },
   "author": {
     "name": "Electra",
