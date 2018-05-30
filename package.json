@@ -5,9 +5,7 @@
   "main": "./bin/electra.js",
   "bin": {
     "electra": "./bin/electra.js",
-    "electra-start": "./bin/electra-start.js",
-    "electra-stop": "./bin/electra-stop.js",
-    "electra-watch": "./bin/electra-watch.js"
+    "electra-start": "./bin/electra-start.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
