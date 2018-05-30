@@ -4,10 +4,15 @@ NodeJS CLI tools for Electra daemon and blockchain.
 
 ## Installation
 
-### Prerequisites
+**Prerequisites**
+- [Node v8+ (with npm)](https://nodejs.org)
 
-- Node v8+ (with npm)
-
-### Getting started
+Then:
 
     npm i -g electra-cli
+
+## Usage
+
+    electra <command>
+
+Just type `electra` to show the manual and list available commands.
