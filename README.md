@@ -1,6 +1,6 @@
 # electra-cli
 
-CLI tools for Electra daemon and blockchain.
+NodeJS CLI tools for Electra daemon and blockchain.
 
 ## Installation
 
