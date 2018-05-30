@@ -6,19 +6,30 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "commander": "^2.15.1",
+    "electra-js": "^0.14.2"
+  },
+  "author": {
+    "name": "Electra",
+    "email": "dev@electraproject.org",
+    "url": "https://electraproject.org"
+  },
+  "contributors": [
+    {
+      "name": "Ivan Gabriele",
+      "email": "ivan.gabriele@gmail.com",
+      "url": "https://www.ivangabriele.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Electra-project/electra-cli.git"
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Electra-project/electra-cli/issues"
   },
-  "homepage": "https://github.com/Electra-project/electra-cli#readme",
-  "dependencies": {
-    "commander": "^2.15.1",
-    "electra-js": "^0.14.2"
-  }
+  "homepage": "https://github.com/Electra-project/electra-cli#readme"
 }
