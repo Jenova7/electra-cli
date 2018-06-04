@@ -13,7 +13,7 @@
   "dependencies": {
     "@inspired-beings/log": "^1.2.0",
     "commander": "^2.15.1",
-    "electra-js": "^0.14.3",
+    "electra-js": "0.15.0",
     "moment": "^2.22.1"
   },
   "author": {
