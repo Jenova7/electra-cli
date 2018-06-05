@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const ElectraJs = require('electra-js')
 const fs = require('fs')
 const log = require('@inspired-beings/log')
