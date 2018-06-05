@@ -10,7 +10,7 @@ const getLogLines = require('./helpers/getLogLines')
 const onSigint = require('./helpers/onSigint')
 const unzip = require('./helpers/unzip')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5817
 const CONNECTIONS_COUNT_MAX = process.env.CONNECTIONS_COUNT_MAX || 10000
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
