@@ -1,11 +1,10 @@
 const log = require('@inspired-beings/log')
 const ElectraJs = require('electra-js')
 const express = require('express')
-const fs = require('fs')
 const moment = require('moment')
-const os = require('os')
 const path = require('path')
 
+const getLogLines = require('./helpers/getLogLines')
 const onSigint = require('./helpers/onSigint')
 
 const LOG_LENGTH = 20
@@ -14,13 +13,12 @@ const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({ isHard: true })
 
-let logPath = path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log')
-let logCacheLines = fs.readFileSync(logPath, 'utf8').split(os.EOL)
+let logCacheLines = getLogLines()
 let timerId
 
 async function refreshInfo() {
   // const info = await electraJs.wallet.getInfo()
-  const logSourceNewLines = fs.readFileSync(logPath, 'utf8').split(os.EOL).slice(logCacheLines.length)
+  const logSourceNewLines = getLogLines().slice(logCacheLines.length)
   logCacheLines = logCacheLines.concat(logSourceNewLines)
 
   logSourceNewLines
