@@ -26,13 +26,19 @@ Then:
 
 Then:
 
-    sudo apt-get install nvm
-    nvm install 10
-    cd ~
-    git clone https://github.com/Electra-project/electra-cli.git
-    cd electra-cli
-    npm i
-    npm start
+```bash
+cd ~
+sudo apt-get update
+sudo apt-get install git -y
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+# or: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+source ~/.bashrc
+nvm install 10
+git clone https://github.com/Electra-project/electra-cli.git
+cd electra-cli
+npm i
+npm start
+```
 
 You may need to bind your internal IP port (5817) to your external IP one (same port).
 
