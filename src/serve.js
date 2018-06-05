@@ -53,8 +53,8 @@ async function run() {
   })
 
   log.warn(`Electra CLI v${VERSION}`)
-  // log.info('Starting Express server...')
-  // await serve()
+  log.info('Starting Express server...')
+  await serve()
   log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
   log.info('Electra daemon started.')
