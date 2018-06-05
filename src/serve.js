@@ -1,6 +1,8 @@
 const log = require('@inspired-beings/log')
 const ElectraJs = require('electra-js')
 const express = require('express')
+const moment = require('moment')
+const numeral = require('numeral')
 const path = require('path')
 
 const download = require('./helpers/download')
@@ -22,6 +24,7 @@ const electraJs = new ElectraJs({
 
 let logCacheLines = getLogLines()
 let timerId
+let loopIndex = 0
 
 async function refreshInfo() {
   // const info = await electraJs.wallet.getInfo()
@@ -32,7 +35,19 @@ async function refreshInfo() {
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
     .forEach(line => log(line))
 
-  timerId = setTimeout(refreshInfo, 500)
+  if (loopIndex === 0) {
+    const info = await electraJs.wallet.getInfo()
+    log.info(`Connections: %s.`, info.connectionsCount)
+    log.info(
+      `Blocks: %s / %s.`,
+      numeral(info.localBlockchainHeight).format('0,0'),
+      numeral(info.networkBlockchainHeight).format('0,0')
+    )
+    log.info(`Last block generated at: %s.`, moment(info.lastBlockGeneratedAt).format())
+  }
+
+  loopIndex = loopIndex === 29 ? 0 : loopIndex + 1
+  timerId = setTimeout(refreshInfo, 1000)
 }
 
 function serve() {
