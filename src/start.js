@@ -33,7 +33,7 @@ async function refreshInfo() {
   log('----------------------------------------')
   log.info(logLines.slice(logLines.length - (LOG_LENGTH + 1), logLines.length - 1).join(os.EOL))
 
-  timerId = setTimeout(refreshInfo, 250)
+  timerId = setTimeout(refreshInfo, 400)
 }
 
 module.exports = async function () {
