@@ -1,5 +1,6 @@
 const log = require('@inspired-beings/log')
 const ElectraJs = require('electra-js')
+const fs = require('fs')
 const moment = require('moment')
 const numeral = require('numeral')
 const path = require('path')
@@ -12,6 +13,7 @@ const unzip = require('./helpers/unzip')
 
 const PORT = process.env.PORT || 5817
 const CONNECTIONS_COUNT_MAX = process.env.CONNECTIONS_COUNT_MAX || 10000
+const LOG_LINES_MAX = 10000
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({
@@ -23,17 +25,24 @@ const electraJs = new ElectraJs({
   isHard: true,
 })
 
-let logCacheLines = getLogLines()
+const LOG_PATH = path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log')
+
+let lastLogLineIndex = 0
 let timerId
 let loopIndex = 0
 
 async function refreshInfo() {
-  const logSourceNewLines = getLogLines().slice(logCacheLines.length)
-  logCacheLines = logCacheLines.concat(logSourceNewLines)
+  const logSourceNewLines = getLogLines().slice(lastLogLineIndex)
+  lastLogLineIndex += logSourceNewLines.length
 
   logSourceNewLines
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
     .forEach(line => log(line))
+
+  if (lastLogLineIndex >= LOG_LINES_MAX) {
+    log.info('Emptying %s...', LOG_PATH)
+    fs.writeFileSync(LOG_PATH, '')
+  }
 
   if (loopIndex === 0) {
     const info = await electraJs.wallet.getInfo()
@@ -55,8 +64,8 @@ async function refreshInfo() {
     // )
     log.info(
       `Memory used: %s / %s.`,
-      numeral(memoryUsage.heapUsed).format('0.000b'),
-      numeral(memoryUsage.heapTotal).format('0.000b')
+      numeral(memoryUsage.heapTotal).format('0.000b'),
+      numeral(memoryUsage.rss).format('0.000b')
     )
     log(`================================================================================`)
   }
@@ -83,6 +92,11 @@ async function run() {
   await download(fileInfo.browser_download_url, filePath, fileInfo.size)
   log.info(`Unzipping %s to %s...`, fileName, electraJs.constants.DAEMON_USER_DIR_PATH)
   await unzip(filePath, electraJs.constants.DAEMON_USER_DIR_PATH)
+
+  if (fs.existsSync(LOG_PATH)) {
+    log.info('Emptying %s...', LOG_PATH)
+    fs.writeFileSync(LOG_PATH, '')
+  }
 
   log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
