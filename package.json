@@ -18,7 +18,8 @@
     "commander": "^2.15.1",
     "electra-js": "0.16.0",
     "express": "^4.16.3",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "progress": "^2.0.0"
   },
   "author": {
     "name": "Electra",
