@@ -34,6 +34,8 @@ Then:
     npm i
     npm start
 
+You may need to bind your internal IP port (5817) to your external IP one (same port).
+
 ## Usage
 
     electra <command>
