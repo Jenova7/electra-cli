@@ -37,6 +37,9 @@ async function refreshInfo() {
 
   if (loopIndex === 0) {
     const info = await electraJs.wallet.getInfo()
+    // const cpuUsage = process.cpuUsage()
+    const memoryUsage = process.memoryUsage()
+
     log(`INFO ===========================================================================`)
     log.info(`Connections: %s.`, numeral(info.connectionsCount).format('0,0'))
     log.info(
@@ -45,6 +48,16 @@ async function refreshInfo() {
       numeral(info.networkBlockchainHeight).format('0,0')
     )
     log.info(`Last block generated at: %s.`, moment(info.lastBlockGeneratedAt * 1000).format())
+    // log.info(
+    //   `CPU used: %s / %s.`,
+    //   numeral(memoryUsage.heapUsed).format('0,0'),
+    //   numeral(memoryUsage.heapTotal).format('0,0')
+    // )
+    log.info(
+      `Memory used: %s / %s.`,
+      numeral(memoryUsage.heapUsed).format('0.000b'),
+      numeral(memoryUsage.heapTotal).format('0.000b')
+    )
     log(`================================================================================`)
   }
 
