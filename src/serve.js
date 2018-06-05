@@ -85,13 +85,15 @@ async function run() {
 
   log.warn(`Electra CLI v${VERSION}`)
 
-  const fileName = 'electra-cli-serve-wallet.zip'
-  const filePath = path.resolve(__dirname, '..', 'data', fileName)
-  log.info(`Downloading %s...`, fileName)
-  const fileInfo = await getGithubReleaseFileInfo(fileName)
-  await download(fileInfo.browser_download_url, filePath, fileInfo.size)
-  log.info(`Unzipping %s to %s...`, fileName, electraJs.constants.DAEMON_USER_DIR_PATH)
-  await unzip(filePath, electraJs.constants.DAEMON_USER_DIR_PATH)
+  if (!fs.existsSync(electraJs.constants.DAEMON_USER_DIR_PATH)) {
+    const fileName = 'electra-cli-serve-wallet.zip'
+    const filePath = path.resolve(__dirname, '..', 'data', fileName)
+    log.info(`Downloading %s...`, fileName)
+    const fileInfo = await getGithubReleaseFileInfo(fileName)
+    await download(fileInfo.browser_download_url, filePath, fileInfo.size)
+    log.info(`Unzipping %s to %s...`, fileName, electraJs.constants.DAEMON_USER_DIR_PATH)
+    await unzip(filePath, electraJs.constants.DAEMON_USER_DIR_PATH)
+  }
 
   if (fs.existsSync(LOG_PATH)) {
     log.info('Emptying %s...', LOG_PATH)
