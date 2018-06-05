@@ -18,6 +18,22 @@ Then:
 
     npm i -g electra-cli
 
+## Deploy a Server Node Wallet
+
+**Prerequisites**
+- APT-based OS (Debian, Ubuntu, etc).
+- Full root access.
+
+Then:
+
+    sudo apt-get install nvm
+    nvm install 10
+    cd ~
+    git clone https://github.com/Electra-project/electra-cli.git
+    cd electra-cli
+    npm i
+    npm start
+
 ## Usage
 
     electra <command>
