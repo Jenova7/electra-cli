@@ -28,7 +28,7 @@ async function refreshInfo() {
 
   logSourceNewLines
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
-    .forEach(line => log(`%s ${line}`, moment().format('hh:mm:ss')))
+    .forEach(line => log(`%s ${line}`, moment().format()))
 
   timerId = setTimeout(refreshInfo, 500)
 }
