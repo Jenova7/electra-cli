@@ -16,7 +16,7 @@ async function refreshInfo() {
   const logLines = fs
     .readFileSync(path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log'), 'utf8')
     .split(os.EOL)
-    .filter(line => !line.startsWith('ThreadRPCServer'))
+    .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
 
   log.clear()
   log(`Electra CLI v${VERSION}`)
