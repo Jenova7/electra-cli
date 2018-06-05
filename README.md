@@ -1,4 +1,4 @@
-# electra-cli
+# Electra CLI
 
 NodeJS CLI tools for Electra daemon and blockchain.
 
@@ -11,20 +11,26 @@ NodeJS CLI tools for Electra daemon and blockchain.
 
 ## Installation
 
-**Prerequisites**
+### Local
+
+The local installation is useful if you want to use Electra CLI tools.
+
+**Prerequisites:**
 - [Node v8+ (with npm)](https://nodejs.org)
 
-Then:
+```bash
+npm i -g electra-cli
+```
 
-    npm i -g electra-cli
+### Remote
 
-## Deploy a Server Node Wallet
+The remote installation is useful if you want to run a Server Node to help the network and eventually publish it as a bootstrap node for new Electra wallet users.
 
-**Prerequisites**
+#### Deploy a Server Node
+
+**Prerequisites:**
 - APT-based OS (Debian, Ubuntu, etc).
 - Full root access.
-
-Then:
 
 ```bash
 cd ~
@@ -43,7 +49,7 @@ npm start
 > **Note**<br>
 > You may need to bind your internal IP port (5817) to your external IP one (same port) via your host online management website (Azure, AWS, etc).
 
-## Update a Server Node Wallet
+#### Update a Server Node
 
 ```bash
 cd ~/electra-cli
@@ -53,6 +59,8 @@ npm start
 ```
 
 ## Usage
+
+The usage part only concerns local installtions as a tool belt.
 
     electra <command>
 
