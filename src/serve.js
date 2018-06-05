@@ -12,7 +12,7 @@ const getLogLines = require('./helpers/getLogLines')
 const onSigint = require('./helpers/onSigint')
 const unzip = require('./helpers/unzip')
 
-const PORT = process.env.PORT || 5817
+const PORT = process.env.PORT || 80
 const CONNECTIONS_COUNT_MAX = process.env.CONNECTIONS_COUNT_MAX || 10000
 const LOG_LINES_MAX = 10000
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
@@ -20,7 +20,6 @@ const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 const electraJs = new ElectraJs({
   daemonConfig: {
     maxconnections: CONNECTIONS_COUNT_MAX,
-    port: PORT,
     server: false,
   },
   isHard: true,
@@ -39,11 +38,6 @@ async function refreshInfo() {
   logSourceNewLines
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
     .forEach(line => log(line))
-
-  if (lastLogLineIndex >= LOG_LINES_MAX) {
-    log.info('Emptying %s...', LOG_PATH)
-    fs.writeFileSync(LOG_PATH, '')
-  }
 
   if (loopIndex === 0) {
     const info = await electraJs.wallet.getInfo()
@@ -68,6 +62,20 @@ async function refreshInfo() {
       numeral(os.totalmem()).format('0.000b')
     )
     log(`================================================================================`)
+  }
+
+  if (lastLogLineIndex >= LOG_LINES_MAX) {
+    try {
+      log.info('Emptying %s...', LOG_PATH)
+      fs.writeFileSync(LOG_PATH, '')
+      lastLogLineIndex = 0
+    }
+    catch(err) {
+      log.warn('Warning: %s', err)
+
+      loopIndex = loopIndex === 29 ? 0 : loopIndex + 1
+      timerId = setTimeout(refreshInfo, 1000)
+    }
   }
 
   loopIndex = loopIndex === 29 ? 0 : loopIndex + 1
