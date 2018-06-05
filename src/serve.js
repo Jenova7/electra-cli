@@ -28,7 +28,6 @@ let timerId
 let loopIndex = 0
 
 async function refreshInfo() {
-  // const info = await electraJs.wallet.getInfo()
   const logSourceNewLines = getLogLines().slice(logCacheLines.length)
   logCacheLines = logCacheLines.concat(logSourceNewLines)
 
