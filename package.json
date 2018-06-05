@@ -18,6 +18,7 @@
     "commander": "^2.15.1",
     "electra-js": "0.16.0",
     "express": "^4.16.3",
+    "extract-zip": "^1.6.7",
     "moment": "^2.22.2",
     "progress": "^2.0.0",
     "request": "^2.87.0",
