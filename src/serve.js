@@ -11,7 +11,6 @@ const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({
   daemonConfig: {
-    daemon: false,
     port: PORT,
   },
   isHard: true,
