@@ -40,7 +40,16 @@ npm i
 npm start
 ```
 
-You may need to bind your internal IP port (5817) to your external IP one (same port).
+> **Note**<br>
+> You may need to bind your internal IP port (5817) to your external IP one (same port) via your host online management website (Azure, AWS, etc).
+
+## Update a Server Node Wallet
+
+```bash
+cd ~/electra-cli
+git pull
+npm start
+```
 
 ## Usage
 
