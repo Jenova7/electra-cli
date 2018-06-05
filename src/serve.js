@@ -1,7 +1,6 @@
 const log = require('@inspired-beings/log')
 const ElectraJs = require('electra-js')
 const express = require('express')
-const moment = require('moment')
 const path = require('path')
 
 const getLogLines = require('./helpers/getLogLines')
@@ -28,7 +27,7 @@ async function refreshInfo() {
 
   logSourceNewLines
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
-    .forEach(line => log(`%s ${line}`, moment().format()))
+    .forEach(line => log(line))
 
   timerId = setTimeout(refreshInfo, 500)
 }
