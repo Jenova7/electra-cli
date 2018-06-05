@@ -39,7 +39,7 @@ async function refreshInfo() {
 
   if (loopIndex === 0) {
     const info = await electraJs.wallet.getInfo()
-    log.info(`Connections: %s.`, info.connectionsCount)
+    log.info(`Connections: %s.`, numeral(info.connectionsCount).format('0,0'))
     log.info(
       `Blocks: %s / %s.`,
       numeral(info.localBlockchainHeight).format('0,0'),
