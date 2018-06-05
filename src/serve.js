@@ -57,8 +57,8 @@ async function refreshInfo() {
     //   numeral(memoryUsage.heapTotal).format('0,0')
     // )
     log.info(
-      `Memory used: %s / %s.`,
-      numeral(os.freemem()).format('0.000b'),
+      `Memory usage: %s / %s.`,
+      numeral(os.totalmem() - os.freemem()).format('0.000b'),
       numeral(os.totalmem()).format('0.000b')
     )
     log(`================================================================================`)
