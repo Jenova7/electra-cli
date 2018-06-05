@@ -1,6 +1,6 @@
 const readline = require('readline')
 
-export default function(callback) {
+module.exports = function(callback) {
   if (process.platform === 'win32') {
     const readlineIntance = readline
       .createInterface({
