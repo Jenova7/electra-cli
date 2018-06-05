@@ -44,7 +44,7 @@ async function refreshInfo() {
       numeral(info.localBlockchainHeight).format('0,0'),
       numeral(info.networkBlockchainHeight).format('0,0')
     )
-    log.info(`Last block generated at: %s.`, moment(info.lastBlockGeneratedAt).format())
+    log.info(`Last block generated at: %s.`, moment(info.lastBlockGeneratedAt * 1000).format())
     log(`================================================================================`)
   }
 
