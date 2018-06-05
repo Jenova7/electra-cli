@@ -8,7 +8,7 @@
     "electra-start": "./bin/electra-start.js"
   },
   "scripts": {
-    "start": "node bin/electra-start.js",
+    "start": "node src/serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
