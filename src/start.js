@@ -5,6 +5,8 @@ const moment = require('moment')
 const os = require('os')
 const path = require('path')
 
+const onSigint = require('./helpers/onSigint')
+
 const LOG_LENGTH = 20
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
@@ -37,7 +39,7 @@ async function refreshInfo() {
 }
 
 module.exports = async function () {
-  process.on('SIGINT', async () => {
+  onSigint(async () => {
     if (timerId !== undefined) clearTimeout(timerId)
     log.clear()
     log.info('Stopping Electra daemon...')
