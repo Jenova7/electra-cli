@@ -1,6 +1,5 @@
 const log = require('@inspired-beings/log')
 const ElectraJs = require('electra-js')
-const express = require('express')
 const moment = require('moment')
 const numeral = require('numeral')
 const path = require('path')
@@ -54,18 +53,6 @@ async function refreshInfo() {
   timerId = setTimeout(refreshInfo, 1000)
 }
 
-function serve() {
-  return new Promise(resolve => {
-    const app = express()
-    app.get('/', (req, res) => res.send(`Electra CLI v${VERSION}`))
-    app.listen(PORT, () => {
-      log.info(`Express server listening on port ${PORT}.`)
-
-      resolve()
-    })
-  })
-}
-
 async function run() {
   onSigint(async () => {
     if (timerId !== undefined) clearTimeout(timerId)
@@ -84,9 +71,6 @@ async function run() {
   await download(fileInfo.browser_download_url, filePath, fileInfo.size)
   log.info(`Unzipping %s to %s...`, fileName, electraJs.constants.DAEMON_USER_DIR_PATH)
   await unzip(filePath, electraJs.constants.DAEMON_USER_DIR_PATH)
-
-  // log.info('Starting Express server...')
-  // await serve()
 
   log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
