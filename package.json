@@ -20,6 +20,7 @@
     "express": "^4.16.3",
     "extract-zip": "^1.6.7",
     "moment": "^2.22.2",
+    "numeral": "^2.0.6",
     "progress": "^2.0.0",
     "request": "^2.87.0",
     "request-progress": "^3.0.0"
