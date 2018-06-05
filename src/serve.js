@@ -3,6 +3,7 @@ const ElectraJs = require('electra-js')
 const fs = require('fs')
 const moment = require('moment')
 const numeral = require('numeral')
+const os = require('os')
 const path = require('path')
 
 const download = require('./helpers/download')
@@ -47,7 +48,6 @@ async function refreshInfo() {
   if (loopIndex === 0) {
     const info = await electraJs.wallet.getInfo()
     // const cpuUsage = process.cpuUsage()
-    const memoryUsage = process.memoryUsage()
 
     log(`INFO ===========================================================================`)
     log.info(`Connections: %s.`, numeral(info.connectionsCount).format('0,0'))
@@ -64,8 +64,8 @@ async function refreshInfo() {
     // )
     log.info(
       `Memory used: %s / %s.`,
-      numeral(memoryUsage.heapTotal).format('0.000b'),
-      numeral(memoryUsage.rss).format('0.000b')
+      numeral(os.freemem()).format('0.000b'),
+      numeral(os.totalmem()).format('0.000b')
     )
     log(`================================================================================`)
   }
