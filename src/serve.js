@@ -18,7 +18,7 @@ const electraJs = new ElectraJs({
   daemonConfig: {
     maxconnections: CONNECTIONS_COUNT_MAX,
     port: PORT,
-    server: true,
+    server: false,
   },
   isHard: true,
 })
