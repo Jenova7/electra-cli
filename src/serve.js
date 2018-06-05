@@ -7,11 +7,16 @@ const path = require('path')
 const getLogLines = require('./helpers/getLogLines')
 const onSigint = require('./helpers/onSigint')
 
-const LOG_LENGTH = 20
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5817
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
-const electraJs = new ElectraJs({ isHard: true })
+const electraJs = new ElectraJs({
+  daemonConfig: {
+    daemon: false,
+    port: PORT,
+  },
+  isHard: true,
+})
 
 let logCacheLines = getLogLines()
 let timerId
@@ -50,8 +55,8 @@ async function run() {
   })
 
   log.warn(`Electra CLI v${VERSION}`)
-  log.info('Starting Express server...')
-  await serve()
+  // log.info('Starting Express server...')
+  // await serve()
   log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
   log.info('Electra daemon started.')
