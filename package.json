@@ -2,6 +2,7 @@
   "name": "electra-cli",
   "version": "1.2.0",
   "description": "CLI tools for Electra daemon and blockchain.",
+  "license": "MIT",
   "main": "./bin/electra.js",
   "bin": {
     "electra": "./bin/electra.js",
@@ -36,12 +37,11 @@
       "url": "https://www.ivangabriele.com"
     }
   ],
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Electra-project/electra-cli.git"
   },
-  "keywords": [],
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Electra-project/electra-cli/issues"
   },
