@@ -59,9 +59,12 @@ async function refreshInfo() {
     numeral(os.totalmem() - os.freemem()).format('0.000b'),
     numeral(os.totalmem()).format('0.000b')
   )
-  // log(`================================================================================`)
 
   if (getLogLines().length >= LOG_LINES_MAX) {
+    log()
+    log('ACTION')
+    log('--------------------------------------------------------------------------------')
+
     try {
       log.info('Emptying %s...', LOG_PATH)
       fs.writeFileSync(LOG_PATH, '')
