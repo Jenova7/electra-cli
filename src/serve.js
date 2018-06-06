@@ -36,29 +36,30 @@ async function refreshInfo() {
   const info = await electraJs.wallet.getInfo()
   // const cpuUsage = process.cpuUsage()
 
+  const infoPretty = {
+    connectionsCount: numeral(info.connectionsCount).format('0,0'),
+    lastBlockGeneratedAt: moment(info.lastBlockGeneratedAt * 1000).format(),
+    localBlockchainHeight: numeral(info.localBlockchainHeight).format('0,0'),
+    networkBlockchainHeight: numeral(info.networkBlockchainHeight).format('0,0'),
+    totalMemmory: numeral(os.totalmem()).format('0.000b'),
+    usedMemmory: numeral(os.totalmem() - os.freemem()).format('0.000b'),
+  }
+
   log.clear()
   log(`Electra CLI v${VERSION}`)
   log()
 
   log('INFO')
   log('--------------------------------------------------------------------------------')
-  log.info(`Connections: %s.`, numeral(info.connectionsCount).format('0,0'))
-  log.info(
-    `Blocks: %s / %s.`,
-    numeral(info.localBlockchainHeight).format('0,0'),
-    numeral(info.networkBlockchainHeight).format('0,0')
-  )
-  log.info(`Last block generated at: %s.`, moment(info.lastBlockGeneratedAt * 1000).format())
+  log.info('Connections: %s.', infoPretty.connectionsCount)
+  log.info('Blocks: %s / %s.', infoPretty.localBlockchainHeight, infoPretty.networkBlockchainHeight)
+  log.info('Last block generated at: %s.', infoPretty.lastBlockGeneratedAt)
   // log.info(
-  //   `CPU used: %s / %s.`,
+  //   'CPU used: %s / %s.',
   //   numeral(memoryUsage.heapUsed).format('0,0'),
   //   numeral(memoryUsage.heapTotal).format('0,0')
   // )
-  log.info(
-    `Memory usage: %s / %s.`,
-    numeral(os.totalmem() - os.freemem()).format('0.000b'),
-    numeral(os.totalmem()).format('0.000b')
-  )
+  log.info(`Memory usage: %s / %s.`, infoPretty.usedMemmory, infoPretty.totalMemmory)
 
   if (getLogLines().length >= LOG_LINES_MAX) {
     log()
