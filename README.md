@@ -85,8 +85,10 @@ npm start
 
 ### Electra CLI Tools Usage
 
-The usage part only concerns local installtions as a tool belt.
+```bash
+electra <command> [--option]
+```
 
-    electra <command>
+To **list the available commands**, just type `electra`.
 
-Just type `electra` to show the manual and list the available commands.
+To **list the available options for each command**, just type `electra <command> --help`.
