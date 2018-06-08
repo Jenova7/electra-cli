@@ -9,6 +9,7 @@
     "electra-start": "./bin/electra-start.js"
   },
   "scripts": {
+    "postpublish": "git push origin head && git push --tags && npm publish",
     "start": "node bin/electra-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
