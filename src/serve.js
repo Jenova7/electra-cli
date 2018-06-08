@@ -46,7 +46,7 @@ async function refreshInfo() {
   }
 
   log.clear()
-  log(`Electra CLI v${VERSION}`)
+  log(`Electra CLI v${VERSION} [Bootstrap Node]`)
   log()
 
   log('INFO')
