@@ -29,7 +29,7 @@ async function refreshInfo() {
     .filter(line => !line.startsWith('ThreadRPCServer') && line.trim().length !== 0)
 
   log.clear()
-  log(`Electra CLI v${VERSION}`)
+  log(`Electra CLI v${VERSION} [Wallet Recovery]`)
   log()
 
   log('INFO')
