@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
-    "electra-js": "0.16.1",
+    "electra-js": "0.16.4",
     "extract-zip": "^1.6.7",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
