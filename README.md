@@ -91,4 +91,4 @@ electra [options] [command]
 
 To **list the available commands**, just type `electra`.
 
-To **list the available options for each command**, just type `electra <command> --help`.
+To **list the available options for each command**, just type `electra help [command]`.
