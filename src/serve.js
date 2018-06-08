@@ -81,7 +81,7 @@ async function refreshInfo() {
   timerId = setTimeout(refreshInfo, 5000)
 }
 
-async function run() {
+module.exports = async function run() {
   const options = OPTIONS_DEFAULT
 
   onSigint(async () => {
@@ -115,5 +115,3 @@ async function run() {
 
   await refreshInfo(options)
 }
-
-run()
