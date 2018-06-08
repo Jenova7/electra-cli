@@ -10,11 +10,13 @@ NodeJS CLI tools for Electra daemon and blockchain.
 [![NSP Status](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6/badge)](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6)
 [![Known Vulnerabilities](https://snyk.io/test/github/Electra-project/electra-cli/badge.svg)](https://snyk.io/test/github/Electra-project/electra-cli)
 
-## Installation
+## Installation & Update
 
 ### Local
 
-The local installation is useful if you want to use Electra CLI tools.
+The local installation is useful if you want to use **Electra CLI Tools**.
+
+#### Electra CLI Tools Installation
 
 **Prerequisites:**
 - [Node v8+ (with npm)](https://nodejs.org)
@@ -23,11 +25,19 @@ The local installation is useful if you want to use Electra CLI tools.
 npm i -g electra-cli
 ```
 
+#### Electra CLI Tools Update
+
+```bash
+npm i -g electra-cli
+```
+
 ### Remote
 
-The remote installation is useful if you want to run a Server Node to help the network and eventually publish it as a bootstrap node for new Electra wallet users.
+The remote installation is useful if you want to run a **Bootstrap Node** to help the network and [publish it](https://stats.uptimerobot.com/YykwxtXwq) to help fasten the Electra wallets network bootstrap.
 
-#### Deploy a Server Node
+It is recommanded to use a real hosted server (a VPS is enough) with at least 2GB of memory.
+
+#### Bootstrap Node Installation
 
 **Prerequisites:**
 - APT-based OS (Debian, Ubuntu, etc).
@@ -50,7 +60,7 @@ npm start
 > **Note**<br>
 > You may need to bind your internal IP port (5817) to your external IP one (same port) via your host online management website (Azure, AWS, etc).
 
-#### Update a Server Node
+#### Bootstrap Node Update
 
 ```bash
 cd ~/electra-cli
