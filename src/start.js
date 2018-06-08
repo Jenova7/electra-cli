@@ -4,6 +4,7 @@ const log = require('@inspired-beings/log')
 const moment = require('moment')
 const os = require('os')
 const path = require('path')
+const rimraf = require('rimraf')
 
 const onSigint = require('./helpers/onSigint')
 
@@ -38,14 +39,25 @@ async function refreshInfo() {
   timerId = setTimeout(refreshInfo, 250)
 }
 
-module.exports = async function () {
+module.exports = async function (options) {
+  if (options.rebuild) {
+    log.info('Removing all Electra user directory files BUT keeping the "wallet.dat" file...')
+
+    try {
+      rimraf.sync(path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, '!(wallet.dat)'))
+    }
+    catch {
+      log.err(`Error: ${err}`)
+    }
+  }
+
   onSigint(async () => {
     if (timerId !== undefined) clearTimeout(timerId)
     log.clear()
     log.info('Stopping Electra daemon...')
     await electraJs.wallet.stopDaemon()
     log.info('Electra daemon stopped.')
-    process.exit();
+    process.exit()
   })
 
   log.clear()
