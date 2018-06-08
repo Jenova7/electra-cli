@@ -86,7 +86,7 @@ npm start
 ### Electra CLI Tools Usage
 
 ```bash
-electra <command> [--option]
+electra [options] [command]
 ```
 
 To **list the available commands**, just type `electra`.
