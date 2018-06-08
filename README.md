@@ -10,8 +10,7 @@ NodeJS CLI tools for Electra daemon and blockchain.
 [![NSP Status](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6/badge)](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6)
 [![Known Vulnerabilities](https://snyk.io/test/github/Electra-project/electra-cli/badge.svg)](https://snyk.io/test/github/Electra-project/electra-cli)
 
-
-## Table Of Contents
+## Contents
 
 - [Installation and Update](#installation-and-update)
   - [Local](#local)
