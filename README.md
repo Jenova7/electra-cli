@@ -31,6 +31,8 @@ npm i -g electra-cli
 npm i -g electra-cli
 ```
 
+---
+
 ### Remote
 
 The remote installation is useful if you want to run a **Bootstrap Node** to help the network and [publish it](https://stats.uptimerobot.com/YykwxtXwq) to help fasten the Electra wallets network bootstrap.
