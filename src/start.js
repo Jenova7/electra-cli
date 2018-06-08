@@ -2,19 +2,26 @@ const ElectraJs = require('electra-js')
 const fs = require('fs')
 const log = require('@inspired-beings/log')
 const moment = require('moment')
+const numeral = require('numeral')
 const os = require('os')
 const path = require('path')
 const rimraf = require('rimraf')
 
 const onSigint = require('./helpers/onSigint')
 
-const LOG_LENGTH = 20
+const LOG_LENGTH = 5
 const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
 
 const electraJs = new ElectraJs({ isHard: true })
+let addresses
 let timerId
 
 async function refreshInfo() {
+  for (let i = 0; i < addresses.length; i++) {
+    const res = await electraJs.wallet.getAddressBalance(addresses[i].hash)
+    addresses[i].amount = numeral(res.confirmed + res.unconfirmed).format('0,0.00000000')
+  }
+
   const info = await electraJs.wallet.getInfo()
   const logLines = fs
     .readFileSync(path.resolve(electraJs.constants.DAEMON_USER_DIR_PATH, 'debug.log'), 'utf8')
@@ -27,9 +34,14 @@ async function refreshInfo() {
 
   log('INFO')
   log('----------------------------------------')
-  for (let prop in info) {
-    log.info(`${prop}: ${info[prop]}`)
-  }
+  log.info(`Connections: ${info.connectionsCount}`)
+  log.info(`Last block generated: ${moment(info.lastBlockGeneratedAt * 1000).fromNow()}`)
+  log.info(`Blockchain height: ${numeral(info.localBlockchainHeight).format('0,0')} / ${numeral(info.networkBlockchainHeight).format('0,0')}`)
+  log()
+
+  log('ADDRESSES')
+  log('----------------------------------------')
+  addresses.map(address => log.info(`${address.hash}: ${address.amount}`))
   log()
 
   log(`LOG                             ${moment().format('hh:mm:ss')}`)
@@ -64,6 +76,9 @@ module.exports = async function (options) {
   log.info('Starting Electra daemon...')
   await electraJs.wallet.startDaemon()
   log.info('Electra daemon started.')
+
+  log.info('Fetching wallet.dat addresses...')
+  addresses = (await electraJs.wallet.getDaemonAddresses()).map(hash => ({ hash }))
 
   await refreshInfo()
 }
