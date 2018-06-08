@@ -10,7 +10,20 @@ NodeJS CLI tools for Electra daemon and blockchain.
 [![NSP Status](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6/badge)](https://nodesecurity.io/orgs/electra-project/projects/60adf17a-da9b-467c-96ef-84ae7e4280b6)
 [![Known Vulnerabilities](https://snyk.io/test/github/Electra-project/electra-cli/badge.svg)](https://snyk.io/test/github/Electra-project/electra-cli)
 
-## Installation & Update
+
+## Table Of Contents
+
+- [Installation and Update](#installation-and-update)
+  - [Local](#local)
+    - [Electra CLI Tools Installation](#electra-cli-tools-installation)
+    - [Electra CLI Tools Update](#electra-cli-tools-update)
+  - [Remote](#remote)
+    - [Bootstrap Node Installation](#bootstrap-node-installation)
+    - [Bootstrap Node Update](#bootstrap-node-update)
+- [Usage](#usage)
+  - [Electra CLI Tools Usage](#electra-cli-tools-usage)
+
+## Installation and Update
 
 ### Local
 
@@ -30,8 +43,6 @@ npm i -g electra-cli
 ```bash
 npm i -g electra-cli
 ```
-
----
 
 ### Remote
 
@@ -72,6 +83,8 @@ npm start
 ```
 
 ## Usage
+
+### Electra CLI Tools Usage
 
 The usage part only concerns local installtions as a tool belt.
 
