@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
+const chalk = require('chalk')
 const commander = require('commander')
 const path = require('path')
+const updateNotifier = require('update-notifier')
+
+const package = require(path.resolve(__dirname, '..', `package.json`))
 
 const BINARY_PATH = path.resolve(
   __dirname,
@@ -10,10 +14,11 @@ const BINARY_PATH = path.resolve(
   'bin',
   `electrad-${{ 'darwin': 'macos', 'linux': 'linux', 'win32': 'windows' }[process.platform]}`
 )
-const VERSION = require(path.resolve(__dirname, '..', `package.json`)).version
+
+updateNotifier({ pkg: package }).notify()
 
 commander
-  .version(VERSION)
+  .version(package.version)
   .command('serve', 'Start the Bootstrap Node server.')
   .command('start', 'Start the daemon and watch it.')
   .parse(process.argv)
