@@ -95,7 +95,7 @@ module.exports = async function run() {
   log.warn(`Electra CLI v${VERSION}`)
 
   if (!fs.existsSync(electraJs.constants.DAEMON_USER_DIR_PATH)) {
-    const fileName = 'electra-cli-serve-wallet.zip'
+    const fileName = 'electra-cli-serve-wallet-2.zip'
     const filePath = path.resolve(__dirname, '..', 'data', fileName)
     log.info(`Downloading %s...`, fileName)
     const fileInfo = await getGithubReleaseFileInfo(fileName)
