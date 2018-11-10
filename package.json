@@ -1,6 +1,6 @@
 {
   "name": "electra-cli",
-  "version": "1.4.3",
+  "version": "2.0.0",
   "description": "CLI tools for Electra daemon and blockchain.",
   "license": "MIT",
   "main": "./bin/electra.js",
