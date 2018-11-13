@@ -12,7 +12,7 @@ const getLogLines = require('./helpers/getLogLines')
 const onSigint = require('./helpers/onSigint')
 const unzip = require('./helpers/unzip')
 
-const CONNECTIONS_COUNT_MAX = process.env.CONNECTIONS_COUNT_MAX || 1500
+const CONNECTIONS_COUNT_MAX = process.env.CONNECTIONS_COUNT_MAX || 1000
 const LOG_LINES_MAX = 10000
 const OPTIONS_DEFAULT = {
   debug: false,
